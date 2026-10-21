@@ -1,0 +1,22 @@
+--------------------------------- Installation in Linux ------------------------------
+
+sudo apt update
+sudo apt install postgresql
+sudo apt install postgresql-contrib
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+sudo -u postgres psql
+
+
+
+
+---------------------------------- Commands ------------------------------------
+
+
+create database test;
+select datname from pg_database;
+
+For list -->    \l 
+
+For change Database --> \c database_name
+
