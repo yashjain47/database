@@ -1,0 +1,154 @@
+"Commands"
+-----------------------------------
+
+1.  show databases;
+Used to show all databases.
+
+2.  use <database_name>;
+Used to use a particular database.
+
+3.  show tables;
+Used to show all the tables of a particular database.
+
+4.  create database <database_name>;
+Used to create a new database.
+
+5.  create table <table_name>
+    (
+    column1 datatype,
+    column2 datatype,
+    column3 datatype,
+    ......
+    );
+Used to create a new table
+
+6.  insert into <table_name> (id,name,email,password,contact,address,dob,gender,status) values (1,"Yash","yashjain@gmail.com","yashjain4720","7878787812","Manesar","2000-10-04","M",1);
+Used to insert single row data into the table 
+
+7.  insert into <table_name> (column1,column2,column3,.....) values (value1,value2,value3,.....),(value1,value2,value3,.....),(value1,value2,value3,.....),...;
+Used to insert multiple row data into the table 
+
+8.  select column1,column2,.. from <table_name>;
+Used to read/select columns from a table 
+
+9.  select * from <table_name>;
+Used to select all the columns from the table.
+
+10. select */column1,column2..... from users where  <condition>;
+Used to put the filter on the table we use "where" clause.
+eg. select * from users where gender="F";
+
+Conditions in where clause:
+1.  =        (equals)
+2.  !=       (not equals)
+3.  >=       (greater than or equal to)
+4.  <=       (less than or equal to)
+5.  >        (greater than)
+6.  <        (less than )
+
+11. desc <table_name>;
+Used to describe the table.
+
+
+
+Types of SQL Commands:
+
+1.	DDL (Data Definition Language) : create, alter, rename, truncate, drop
+2.	DQL (Data query Language) : select
+3.	DML (Data manipulation Language) : insert, update, delete
+4.	DCL (Data control Language) : grant and revoke permisiion of the users.
+5.	TCL (Transaction control Language) : start transaction, commit, rollback
+
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+"Try on mySQL"
+
+
+show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| newdb              |
+| performance_schema |
+| sys                |
++--------------------+
+
+
+
+create database newdb;
+use newdb;
+
+
+
+show tables;
++-----------------+
+| Tables_in_newdb |
++-----------------+
+| users           |
++-----------------+
+
+
+create table users (id int unsigned, name varchar(100), email varchar(150), password varchar(100), contact varchar(15), address text, dob date, gender enum("M","F"), status boolean);
+insert into users (id,name,email,password,contact,address,dob,gender,status) values (1,"Yash","yashjain@gmail.com","yashjain4720","7878787812","Manesar","2000-10-04","M",1);
+insert into users (id,name,email,password,contact,address,dob,gender,status) values (2,"Himanshu","himanshujha@gmail.com","himanshujha","+919828283181","Manesar","2002-07-18","M",1),(3,"Garima","garima@gmail.com","garima123","9273781281","Mumbai","2002-03-27","F",1);
+or 
+insert into users values (2,"Himanshu","himanshujha@gmail.com","himanshujha","+919828283181","Manesar","2002-07-18","M",1),(3,"Garima","garima@gmail.com","garima123","9273781281","Mumbai","2002-03-27","F",1);
+
+
+
+
+select id,name,password from users;
++------+----------+--------------+
+| id   | name     | password     |
++------+----------+--------------+
+|    1 | Yash     | yashjain4720 |
+|    2 | Himanshu | himanshujha  |
+|    3 | Garima   | garima123    |
++------+----------+--------------+
+
+
+
+
+select * from users;
++------+----------+-----------------------+--------------+---------------+---------+------------+--------+--------+
+| id   | name     | email                 | password     | contact       | address | dob        | gender | status |
++------+----------+-----------------------+--------------+---------------+---------+------------+--------+--------+
+|    1 | Yash     | yashjain@gmail.com    | yashjain4720 | 7878787812    | Manesar | 2000-10-04 | M      |      1 |
+|    2 | Himanshu | himanshujha@gmail.com | himanshujha  | +919828283181 | Manesar | 2002-07-18 | M      |      1 |
+|    3 | Garima   | garima@gmail.com      | garima123    | 9273781281    | Mumbai  | 2002-03-27 | F      |      1 |
++------+----------+-----------------------+--------------+---------------+---------+------------+--------+--------+
+
+
+
+select name as "USERS NAME" from users;
++------------+
+| USERS NAME |
++------------+
+| Yash       |
+| Himanshu   |
+| Garima     |
++------------+
+
+
+select * from users where gender="F";
++------+--------+------------------+-----------+------------+---------+------------+--------+--------+
+| id   | name   | email            | password  | contact    | address | dob        | gender | status |
++------+--------+------------------+-----------+------------+---------+------------+--------+--------+
+|    3 | Garima | garima@gmail.com | garima123 | 9273781281 | Mumbai  | 2002-03-27 | F      |      1 |
++------+--------+------------------+-----------+------------+---------+------------+--------+--------+
+
+
+desc students;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| Id     | int          | NO   | PRI | NULL    |       |
+| name   | varchar(100) | NO   |     | NULL    |       |
+| email  | varchar(150) | NO   | UNI | NULL    |       |
+| age    | tinyint      | YES  |     | NULL    |       |
+| status | tinyint(1)   | YES  |     | 1       |       |
++--------+--------------+------+-----+---------+-------+

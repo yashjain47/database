@@ -1,0 +1,94 @@
+Functions:
+
+COUNT()
+Returns the number of rows in a database table.
+
+SUM()
+Returns the total sum of a numeric column.
+
+AVG()
+Calculates the average of a set of values.
+
+MIN()
+Return the lowest value (minimum) in a set og not null values.
+
+MAX()
+Return the greatest value (maximum) in a set og not null values.
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------
+Try on MySQL
+
+
+select count(id) from students;
++-----------+
+| count(id) |
++-----------+
+|        10 |
++-----------+
+
+select count(id) from students where age > 22;
++-----------+
+| count(id) |
++-----------+
+|         6 |
++-----------+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+select sum(id) as "Sum of ids" from students;
++-------------+
+| Sum of Ids  |
++-------------+
+|         55  |
++-------------+
+
+select sum(age) as "Sum of Ages" from students;
++-------------+
+| Sum of Ages |
++-------------+
+|         215 |
++-------------+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+select avg(age) as "Average of Ages" from students;
++-----------------+
+| Average of Ages |
++-----------------+
+|         23.8889 |
++-----------------+
+
+select avg(id) as "Average of Ids" from students;
++----------------+
+| Average of Ids |
++----------------+
+|         5.5000 |
++----------------+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+select max(age) as "Maximum Age" from students;
++-------------+
+| Maximum Age |
++-------------+
+|          29 |
++-------------+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+select min(age) as "minimum Age" from students;
++-------------+
+| minimum Age |
++-------------+
+|          20 |
++-------------+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+

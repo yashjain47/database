@@ -1,0 +1,55 @@
+create database -->
+create database testDB;
+
+
+delete database -->
+drop database testDB;
+
+
+create new table -->
+create table Persons(PersonID int,LastName varchar(255),FirstName varchar(255),Address varchar(255),City varchar(255) );
+
+
+delete table -->
+drop table Persons;
+
+
+delete all data from a table -->
+DELETE FROM Persons;
+        or 
+truncate table Persons;
+
+
+add a column in an existing table -->
+alter table Persons add Birthday date;
+
+
+delete a column from a table -->
+alter table Persons drop column Birthday;
+
+
+Select all the different values from the Country column in the Customers table -->
+select DISTINCT Country FROM Customers;
+
+Select all records from the Customers table, sort the result alphabetically by the column City -->
+SELECT * FROM Customers order by city;
+
+
+Select all records from the Customers table, sort the result alphabetically, first by the column Country, then, by the column City -->
+SELECT * FROM Customers ORDER BY Country, City;
+
+
+Delete all the records from the Customers table where the Country value is 'Norway' -->
+delete from Customers where Country = 'Norway';
+
+
+Select all records where the first letter of the City starts with anything from an "a" to an "f".
+SELECT * FROM Customers WHERE City LIKE '[a-f]%';
+
+
+Select all records where the first letter of the City is NOT an "a" or a "c" or an "f".
+SELECT * FROM Customers WHERE City LIKE '[!acf]%';
+
+
+Use the BETWEEN operator to select all the records where the value of the Price column is between 10 and 20-->
+SELECT * FROM Products WHERE Price between 10 and 20 ;

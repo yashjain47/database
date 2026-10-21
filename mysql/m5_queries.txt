@@ -1,0 +1,239 @@
+"Queries"
+
+1.  SELECT
+2.  INSERT
+3.  UPDATE
+4.  DELETE  
+5.  ALTER
+
+
+1.  SELECT
+    select * from <table_name>; 
+
+2.  INSERT
+    insert into <table_name> (column1,column2,column3,.....) values (value1,value2,value3,.....),(value1,value2,value3,.....),(value1,value2,value3,.....),...;
+
+3.  UPDATE
+    update <table_name> SET <field1> = <new_value1>,<field2> = <new_value2>,.. where <condition>;
+
+4.  DELETE
+    delete from <table_name> where <condition>;
+
+5.  ALTER
+    alter table <table_name> <> <perimeter>;
+    ALTER TABLE Persons ADD PRIMARY KEY (ID);
+
+
+----------->>>>>>
+
+Commit  & Rollback
+
+start --> (CUD) --> commit --> rollback
+in Insert , delete , update
+ 
+If any wrong CUD Operations happens then we can rollback to it (just like revert the Operations).
+
+if Commits happen then we can not rolllback it.
+if rollback happen then its obviously not committed.
+
+CUD = Create,update,delete
+
+
+----------->>>>>>
+
+Primary Key and Foreign Key
+
+Primary Key always contains unique data.
+It cannot be null.
+There must be single primary key in a table.
+
+Foreign key is used to link two tables.
+Foreign key in one table (child table) is used to point PRIMARY KEY in another table (Parent Key).
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------
+Try on MySQL
+
+
+
+select * from users;
++------+----------+-----------------------+--------------+---------------+---------+------------+--------+--------+
+| id   | name     | email                 | password     | contact       | address | dob        | gender | status |
++------+----------+-----------------------+--------------+---------------+---------+------------+--------+--------+
+|    1 | Yash     | yashjain@gmail.com    | yashjain4720 | 7878787812    | Manesar | 2000-10-04 | M      |      1 |
+|    2 | Himanshu | himanshujha@gmail.com | himanshujha  | +919828283181 | Manesar | 2002-07-18 | M      |      1 |
+|    3 | Garima   | garima@gmail.com      | garima123    | 9273781281    | Mumbai  | 2002-03-27 | F      |      1 |
++------+----------+-----------------------+--------------+---------------+---------+------------+--------+--------+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+insert into students (Id, name, email, age) values (3,"Beth","bethy@gmail.com",20),(4,"Mukul","Mukul@gmail.com",21),(5,"Tushar","tushar@gmail.com",22),(6,"Kartik","kartik@gmail.com",25);
+
+select * from students;
++----+---------+--------------------+------+--------+
+| Id | name    | email              | age  | status |
++----+---------+--------------------+------+--------+
+|  1 | yash    | yashjian@gmail.com |   23 |      1 |
+|  2 | John    | johnjohn@gmail.com |   26 |      1 |
+|  3 | Beth    | bethy@gmail.com    |   20 |      1 |
+|  4 | Mukul   | Mukul@gmail.com    |   21 |      1 |
+|  5 | Tushar  | tushar@gmail.com   |   22 |      1 |
+|  6 | Kartik  | kartik@gmail.com   |   25 |      1 |
+|  7 | Aayushi | aayushi@gmail.com  |   29 |      1 |
+|  8 | Rohan   | ronny@gmail.com    |   23 |      1 |
+|  9 | Praveen | praveen1@gmail.com |   26 |      1 |
+| 10 | Shaili  | shaili@gmail.com   | NULL |      1 |
++----+---------+--------------------+------+--------+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+update students set age = 30 where name = "mukul";
+
+select * from students;
++----+---------+--------------------+------+--------+
+| Id | name    | email              | age  | status |
++----+---------+--------------------+------+--------+
+|  1 | yash    | yashjian@gmail.com |   23 |      1 |
+|  2 | John    | johnjohn@gmail.com |   26 |      1 |
+|  3 | Beth    | bethy@gmail.com    |   20 |      1 |
+|  4 | Mukul   | Mukul@gmail.com    |   30 |      1 |
+|  5 | Tushar  | tushar@gmail.com   |   22 |      1 |
+|  6 | Kartik  | kartik@gmail.com   |   25 |      1 |
+|  7 | Aayushi | aayushi@gmail.com  |   29 |      1 |
+|  8 | Rohan   | ronny@gmail.com    |   23 |      1 |
+|  9 | Praveen | praveen1@gmail.com |   26 |      1 |
+| 10 | Shaili  | shaili@gmail.com   | NULL |      1 |
++----+---------+--------------------+------+--------+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+delete from students where id = 8;
+
+select * from students;
++----+---------+--------------------+------+--------+
+| Id | name    | email              | age  | status |
++----+---------+--------------------+------+--------+
+|  1 | yash    | yashjian@gmail.com |   23 |      1 |
+|  2 | John    | johnjohn@gmail.com |   26 |      1 |
+|  3 | Beth    | bethy@gmail.com    |   20 |      1 |
+|  4 | Mukul   | Mukul@gmail.com    |   30 |      1 |
+|  5 | Tushar  | tushar@gmail.com   |   22 |      1 |
+|  6 | Kartik  | kartik@gmail.com   |   25 |      1 |
+|  7 | Aayushi | aayushi@gmail.com  |   29 |      1 |
+|  9 | Praveen | praveen1@gmail.com |   26 |      1 |
+| 10 | Shaili  | shaili@gmail.com   | NULL |      1 |
++----+---------+--------------------+------+--------+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+FOR COMMITS AND ROLLBACK
+
+
+select * from students;
++----+---------+--------------------+------+--------+
+| Id | name    | email              | age  | status |
++----+---------+--------------------+------+--------+
+|  1 | yash    | yashjian@gmail.com |   30 |      1 |
+|  2 | John    | johnjohn@gmail.com |   26 |      1 |
+|  3 | Beth    | bethy@gmail.com    |   20 |      1 |
+|  4 | Mukul   | Mukul@gmail.com    |   35 |      1 |
+|  5 | Tushar  | tushar@gmail.com   |   22 |      1 |
+|  6 | Kartik  | kartik@gmail.com   |   25 |      1 |
+|  7 | Aayushi | aayushi@gmail.com  |   29 |      1 |
+|  9 | Praveen | praveen1@gmail.com |   26 |      1 |
+| 10 | Shaili  | shaili@gmail.com   | NULL |      1 |
++----+---------+--------------------+------+--------+
+
+update students set age = 25 where id =1;
+
+select * from students;
++----+---------+--------------------+------+--------+
+| Id | name    | email              | age  | status |
++----+---------+--------------------+------+--------+
+|  1 | yash    | yashjian@gmail.com |   25 |      1 |
+|  2 | John    | johnjohn@gmail.com |   26 |      1 |
+|  3 | Beth    | bethy@gmail.com    |   20 |      1 |
+|  4 | Mukul   | Mukul@gmail.com    |   35 |      1 |
+|  5 | Tushar  | tushar@gmail.com   |   22 |      1 |
+|  6 | Kartik  | kartik@gmail.com   |   25 |      1 |
+|  7 | Aayushi | aayushi@gmail.com  |   29 |      1 |
+|  9 | Praveen | praveen1@gmail.com |   26 |      1 |
+| 10 | Shaili  | shaili@gmail.com   | NULL |      1 |
++----+---------+--------------------+------+--------+
+
+commit;
+
+update students set age = 23 where id =1;
+
+select * from students;
++----+---------+--------------------+------+--------+
+| Id | name    | email              | age  | status |
++----+---------+--------------------+------+--------+
+|  1 | yash    | yashjian@gmail.com |   23 |      1 |
+|  2 | John    | johnjohn@gmail.com |   26 |      1 |
+|  3 | Beth    | bethy@gmail.com    |   20 |      1 |
+|  4 | Mukul   | Mukul@gmail.com    |   35 |      1 |
+|  5 | Tushar  | tushar@gmail.com   |   22 |      1 |
+|  6 | Kartik  | kartik@gmail.com   |   25 |      1 |
+|  7 | Aayushi | aayushi@gmail.com  |   29 |      1 |
+|  9 | Praveen | praveen1@gmail.com |   26 |      1 |
+| 10 | Shaili  | shaili@gmail.com   | NULL |      1 |
++----+---------+--------------------+------+--------+
+
+rollback;
+
+select * from students;
++----+---------+--------------------+------+--------+
+| Id | name    | email              | age  | status |
++----+---------+--------------------+------+--------+
+|  1 | yash    | yashjian@gmail.com |   25 |      1 |
+|  2 | John    | johnjohn@gmail.com |   26 |      1 |
+|  3 | Beth    | bethy@gmail.com    |   20 |      1 |
+|  4 | Mukul   | Mukul@gmail.com    |   35 |      1 |
+|  5 | Tushar  | tushar@gmail.com   |   22 |      1 |
+|  6 | Kartik  | kartik@gmail.com   |   25 |      1 |
+|  7 | Aayushi | aayushi@gmail.com  |   29 |      1 |
+|  9 | Praveen | praveen1@gmail.com |   26 |      1 |
+| 10 | Shaili  | shaili@gmail.com   | NULL |      1 |
++----+---------+--------------------+------+--------+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+FOR PRIMARY KEY AND FOREIGN KEY
+
+
+CREATE TABLE Persons (PersonID int NOT NULL PRIMARY KEY, LastName varchar(100) NOT NULL, FirstName varchar(100) NOT NULL, Age int NOT NULL);
+
+select * from Persons;
++----------+----------+-----------+-----+
+| PersonID | LastName | FirstName | Age |
++----------+----------+-----------+-----+
+|        1 | Jain     | Yash      |  23 |
+|        2 | Huesen   | Van       |  32 |
+|        3 | bently   | John      |  25 |
++----------+----------+-----------+-----+
+
+
+CREATE TABLE Orders (OrderID int NOT NULL,OrderNumber int NOT NULL,PersonID int,PRIMARY KEY (OrderID),FOREIGN KEY (PersonID) REFERENCES Persons(PersonID));
+
+select * from Orders;
++---------+-------------+----------+
+| OrderID | OrderNumber | PersonID |
++---------+-------------+----------+
+|       1 |       77789 |        3 |
+|       2 |       44678 |        3 |
+|       3 |       22456 |        2 |
+|       4 |       24562 |        1 |
++---------+-------------+----------+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

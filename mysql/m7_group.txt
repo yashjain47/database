@@ -1,0 +1,101 @@
+GROUP BY and HAVING Clause
+
+group by can work on single as well as multiple table also.
+where condition is not mandatory.It is optional to use.
+
+Syntax:
+select <column_name>/* from <table_name> where <condition> group by <column_name>;
+
+
+Example:
+select age, count(age) from students group by (age);
++------+------------+
+| age  | count(age) |
++------+------------+
+|   25 |          2 |
+|   26 |          2 |
+|   20 |          1 |
+|   35 |          1 |
+|   22 |          1 |
+|   29 |          1 |
+| NULL |          0 |
++------+------------+
+
+select PersonID,count(PersonID) from Orders group by (PersonID);
++----------+-----------------+
+| PersonID | count(PersonID) |
++----------+-----------------+
+|     NULL |               0 |
+|        1 |               1 |
+|        2 |               1 |
+|        3 |               2 |
++----------+-----------------+
+
+
+select PersonID,count(PersonID) from Orders group by (PersonID) having count(PersonID) >= 1;
++----------+-----------------+
+| PersonID | count(PersonID) |
++----------+-----------------+
+|        1 |               1 |
+|        2 |               1 |
+|        3 |               2 |
++----------+-----------------+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Sub Query
+
+Syntax:
+select <column_name>/* from <table_name1> where (select <column_name> from <table_name2>);
+
+Example:
+select * from  Persons where PersonID = (select OrderID from Orders where PersonID = 2);
++----------+----------+-----------+-----+
+| PersonID | LastName | FirstName | Age |
++----------+----------+-----------+-----+
+|        3 | bently   | John      |  25 |
++----------+----------+-----------+-----+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Exists Syntax:
+
+Syntax:
+select <column_name>/* from <table_name1> where exists (select <column_name> from <table_name2>);
+
+select * from  Persons where exists (select OrderID from Orders where PersonID = 3);
++----------+----------+-----------+-----+
+| PersonID | LastName | FirstName | Age |
++----------+----------+-----------+-----+
+|        1 | Jain     | Yash      |  23 |
+|        2 | Huesen   | Van       |  32 |
+|        3 | bently   | John      |  25 |
+|        4 | Goyal    | Mukul     |  29 |
++----------+----------+-----------+-----+
+
+
+
+NOT Exists Syntax:
+
+Syntax:
+select <column_name>/* from <table_name1> where exists (select <column_name> from <table_name2>);
+
+select * from  Persons where not exists (select OrderID from Orders where PersonID = 3);
+Empty set (0.00 sec)
+
+select * from  Persons where not exists (select OrderID from Orders where PersonID = 4);
++----------+----------+-----------+-----+
+| PersonID | LastName | FirstName | Age |
++----------+----------+-----------+-----+
+|        1 | Jain     | Yash      |  23 |
+|        2 | Huesen   | Van       |  32 |
+|        3 | bently   | John      |  25 |
+|        4 | Goyal    | Mukul     |  29 |
++----------+----------+-----------+-----+
+

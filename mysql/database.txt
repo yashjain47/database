@@ -1,0 +1,63 @@
+"DATABASE"
+A database is an organized collection of structured information or data.
+
+
+"DBMS"
+Database management system (DBMS) are software systems Used to store, retrieve and run queries on data.
+
+FOR CRUD Operations
+C   --> CREATE
+R   --> READ
+U   --> UPDATE
+D   --> DELETE
+
+
+Types of DBMS:
+
+1.  Relational (SQL)
+2.  Non-Relational (Non-SQL)
+
+
+1.  Relational (SQL)
+A relational database is a collection of data items with pre defined relationship between them, stored in the forms of table, rows and columns.
+
+List of SQL Databases:
+
+MySQL
+MariaDB
+Oracle
+PostgresSQL
+MSSQL
+
+
+-------------------------------------------------------------------------------------------------------------
+
+
+MySQL:
+MySQL is a Relational database management system (RDBMS) developed by oracle that is based on structured query language.
+
+SQl is a non-case sensitive language.
+Eg,:    SELECT and select both have same meaning.
+
+
+
+Database Table:
+It is a collection of rows and columns that contains relational data.
+
+
+datatypes in SQL/MySQL:
+
+1.  String. 
+2.  Numeric.
+3.  Date & Time.
+
+
+MySQL Constraints:
+
+
+1.  NOT NULL.
+2.  UNIQUE.
+3.  DEFAULT.
+4.  CHECK.
+5.  FOREGIN KEY.
+6.  PRIMARY KEY.

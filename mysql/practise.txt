@@ -1,0 +1,26 @@
+SHOW DATABASES;
+SHOW TABLES;
+
+CREATE DATABASE college;
+CREATE DATABASE IF NOT EXISTS college;
+
+DROP DATABASE college;
+DROP DATABASE IF EXISTS college;
+
+DROP TABLE student;
+
+USE college;
+
+
+---------------------------------------------------------------------------------------------
+
+
+CREATE TABLE student (value datatype constraints);
+>>  CREATE TABLE student (Id INT PRIMARY KEY, Name VARCHAR(50), Age INT NOT NULL);
+
+
+>>  INSERT INTO student VALUES(1,"Yash Jain",24);
+
+
+SELECT * FROM student;
+

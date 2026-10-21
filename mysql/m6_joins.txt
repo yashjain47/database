@@ -1,0 +1,186 @@
+-------------------------------------------- MySQL JOIN --------------------------------------------
+
+Join only works in Relational database.
+
+
+Orders Table
++---------+-------------+----------+
+| OrderID | OrderNumber | PersonID |
++---------+-------------+----------+
+|       1 |       77789 |        3 |
+|       2 |       44678 |        3 |
+|       3 |       22456 |        2 |
+|       4 |       24562 |        1 |
+|       5 |        7766 |     NULL |
++---------+-------------+----------+
+
+Persons Table
++----------+----------+-----------+-----+
+| PersonID | LastName | FirstName | Age |
++----------+----------+-----------+-----+
+|        1 | Jain     | Yash      |  23 |
+|        2 | Huesen   | Van       |  32 |
+|        3 | bently   | John      |  25 |
+|        4 | Goyal    | Mukul     |  29 |
++----------+----------+-----------+-----+
+
+
+
+1.  INNER JOIN
+
+MySQL Inner Join is used to returns only those results from th tables thta match the specified condition and hide the other rows and columns.
+MySQL assumes it as a default Join, so it is optional to use the Inner join keyword with the query.
+
+Syntax:
+select <column_name>/* from <table1_name> inner join <table2_name> on <condition1>;
+
+Examples:
+select * from Persons inner join Orders on Persons.PersonID = Orders.PersonID;
++----------+----------+-----------+-----+---------+-------------+----------+
+| PersonID | LastName | FirstName | Age | OrderID | OrderNumber | PersonID |
++----------+----------+-----------+-----+---------+-------------+----------+
+|        3 | bently   | John      |  25 |       1 |       77789 |        3 |
+|        3 | bently   | John      |  25 |       2 |       44678 |        3 |
+|        2 | Huesen   | Van       |  32 |       3 |       22456 |        2 |
+|        1 | Jain     | Yash      |  23 |       4 |       24562 |        1 |
++----------+----------+-----------+-----+---------+-------------+----------+
+
+        ---------OR----------
+
+select * from Orders inner join Persons on Persons.PersonID = Orders.PersonID;
++---------+-------------+----------+----------+----------+-----------+-----+
+| OrderID | OrderNumber | PersonID | PersonID | LastName | FirstName | Age |
++---------+-------------+----------+----------+----------+-----------+-----+
+|       1 |       77789 |        3 |        3 | bently   | John      |  25 |
+|       2 |       44678 |        3 |        3 | bently   | John      |  25 |
+|       3 |       22456 |        2 |        2 | Huesen   | Van       |  32 |
+|       4 |       24562 |        1 |        1 | Jain     | Yash      |  23 |
++---------+-------------+----------+----------+----------+-----------+-----+
+
+
+        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+2.  LEFT JOIN
+
+MySQL Left join returns all the record from the left table (table 1), and the mathed records from the right table (table2).
+
+Syntax:
+select <column_name>/* from <table1_name> left join <table2_name> on <condition1>;
+
+Example:
+select * from Persons left join Orders on Persons.PersonID = Orders.PersonID;
++----------+----------+-----------+-----+---------+-------------+----------+
+| PersonID | LastName | FirstName | Age | OrderID | OrderNumber | PersonID |
++----------+----------+-----------+-----+---------+-------------+----------+
+|        1 | Jain     | Yash      |  23 |       4 |       24562 |        1 |
+|        2 | Huesen   | Van       |  32 |       3 |       22456 |        2 |
+|        3 | bently   | John      |  25 |       2 |       44678 |        3 |
+|        3 | bently   | John      |  25 |       1 |       77789 |        3 |
+|        4 | Goyal    | Mukul     |  29 |    NULL |        NULL |     NULL |
++----------+----------+-----------+-----+---------+-------------+----------+
+
+
+        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+3.  RIGHT JOIN
+
+MySQL Right join returns all the record from the Right table (table 2), and the mathed records from the Left table (table1).
+
+Syntax:
+select <column_name>/* from <table1_name> Right join <table2_name> on <condition1>;
+
+Example:
+select * from Persons right join Orders on Persons.PersonID = Orders.PersonID;
++----------+----------+-----------+------+---------+-------------+----------+
+| PersonID | LastName | FirstName | Age  | OrderID | OrderNumber | PersonID |
++----------+----------+-----------+------+---------+-------------+----------+
+|        3 | bently   | John      |   25 |       1 |       77789 |        3 |
+|        3 | bently   | John      |   25 |       2 |       44678 |        3 |
+|        2 | Huesen   | Van       |   32 |       3 |       22456 |        2 |
+|        1 | Jain     | Yash      |   23 |       4 |       24562 |        1 |
+|     NULL | NULL     | NULL      | NULL |       5 |        7766 |     NULL |
++----------+----------+-----------+------+---------+-------------+----------+
+
+
+        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+4.  CROSS JOIN
+
+MySQL Cross join produces a result set which is the number of rows in the first table multiplied by the number of rows in the second table if no where clause is used along with cross join.
+
+This kind of result is called Cartesian Product.
+
+Syntax:
+select <column_name>/* from <table1_name> cross join <table2_name>;
+        --or--
+select <column_name>/* from <table1_name> cross join <table2_name> on <condition1>;
+
+Example:
+select * from Persons cross join Orders;
++----------+----------+-----------+-----+---------+-------------+----------+
+| PersonID | LastName | FirstName | Age | OrderID | OrderNumber | PersonID |
++----------+----------+-----------+-----+---------+-------------+----------+
+|        4 | Goyal    | Mukul     |  29 |       1 |       77789 |        3 |
+|        3 | bently   | John      |  25 |       1 |       77789 |        3 |
+|        2 | Huesen   | Van       |  32 |       1 |       77789 |        3 |
+|        1 | Jain     | Yash      |  23 |       1 |       77789 |        3 |
+|        4 | Goyal    | Mukul     |  29 |       2 |       44678 |        3 |
+|        3 | bently   | John      |  25 |       2 |       44678 |        3 |
+|        2 | Huesen   | Van       |  32 |       2 |       44678 |        3 |
+|        1 | Jain     | Yash      |  23 |       2 |       44678 |        3 |
+|        4 | Goyal    | Mukul     |  29 |       3 |       22456 |        2 |
+|        3 | bently   | John      |  25 |       3 |       22456 |        2 |
+|        2 | Huesen   | Van       |  32 |       3 |       22456 |        2 |
+|        1 | Jain     | Yash      |  23 |       3 |       22456 |        2 |
+|        4 | Goyal    | Mukul     |  29 |       4 |       24562 |        1 |
+|        3 | bently   | John      |  25 |       4 |       24562 |        1 |
+|        2 | Huesen   | Van       |  32 |       4 |       24562 |        1 |
+|        1 | Jain     | Yash      |  23 |       4 |       24562 |        1 |
+|        4 | Goyal    | Mukul     |  29 |       5 |        7766 |     NULL |
+|        3 | bently   | John      |  25 |       5 |        7766 |     NULL |
+|        2 | Huesen   | Van       |  32 |       5 |        7766 |     NULL |
+|        1 | Jain     | Yash      |  23 |       5 |        7766 |     NULL |
++----------+----------+-----------+-----+---------+-------------+----------+
+
+
+select * from Orders cross join Persons;
++---------+-------------+----------+----------+----------+-----------+-----+
+| OrderID | OrderNumber | PersonID | PersonID | LastName | FirstName | Age |
++---------+-------------+----------+----------+----------+-----------+-----+
+|       1 |       77789 |        3 |        4 | Goyal    | Mukul     |  29 |
+|       1 |       77789 |        3 |        3 | bently   | John      |  25 |
+|       1 |       77789 |        3 |        2 | Huesen   | Van       |  32 |
+|       1 |       77789 |        3 |        1 | Jain     | Yash      |  23 |
+|       2 |       44678 |        3 |        4 | Goyal    | Mukul     |  29 |
+|       2 |       44678 |        3 |        3 | bently   | John      |  25 |
+|       2 |       44678 |        3 |        2 | Huesen   | Van       |  32 |
+|       2 |       44678 |        3 |        1 | Jain     | Yash      |  23 |
+|       3 |       22456 |        2 |        4 | Goyal    | Mukul     |  29 |
+|       3 |       22456 |        2 |        3 | bently   | John      |  25 |
+|       3 |       22456 |        2 |        2 | Huesen   | Van       |  32 |
+|       3 |       22456 |        2 |        1 | Jain     | Yash      |  23 |
+|       4 |       24562 |        1 |        4 | Goyal    | Mukul     |  29 |
+|       4 |       24562 |        1 |        3 | bently   | John      |  25 |
+|       4 |       24562 |        1 |        2 | Huesen   | Van       |  32 |
+|       4 |       24562 |        1 |        1 | Jain     | Yash      |  23 |
+|       5 |        7766 |     NULL |        4 | Goyal    | Mukul     |  29 |
+|       5 |        7766 |     NULL |        3 | bently   | John      |  25 |
+|       5 |        7766 |     NULL |        2 | Huesen   | Van       |  32 |
+|       5 |        7766 |     NULL |        1 | Jain     | Yash      |  23 |
++---------+-------------+----------+----------+----------+-----------+-----+
+
+
+        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+4.  Multiple Table JOIN
+
+Syntax:
+select <column_name>/* from <table1_name> inner join <table2_name> on <condition1> inner join <table3_name> on <condition3> ;
+
+
+
+
